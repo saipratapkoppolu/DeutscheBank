@@ -9,31 +9,38 @@ import SwiftUI
 import Combine
 
 struct PostsListView: View {
-    @ObservedObject var viewModel: PostsViewModel = PostsViewModel()
+    @ObservedObject var viewModel: PostsViewModel
     
     var body: some View {
         NavigationView {
             Group {
-                if !viewModel.error.isEmpty {
-                    Text("Error: \(viewModel.error)")
+                if viewModel.showLoader {
+                    ProgressView()
                 } else {
-                    List(viewModel.posts) { post in
-                        PostRow(post: post)
+                    if !viewModel.error.isEmpty {
+                        Text("Error: \(viewModel.error)")
+                    } else {
+                        List(viewModel.filteredPosts) { post in
+                            PostRow(viewModel: PostRowViewModel(post: post)) { post in
+                                viewModel.toggleFavorite(post: post)
+                            }
+                        }
                     }
-                    
                 }
+                
             }
             .navigationTitle("My Posts")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         viewModel.showFavouritesOnly.toggle()
-                        viewModel.updateView()
                     } label: {
-                        Image(systemName: "heart.fill")
-                            .tint(.red)
+                        Image(
+                            systemName:
+                                viewModel.favouriteImageName
+                        )
+                        .tint(.red)
                     }
-
                 }
             }
         }
@@ -46,7 +53,7 @@ struct PostsListView: View {
 
 struct PostsListView_Previews: PreviewProvider {
     static var previews: some View {
-        PostsListView()
+        PostsListView(viewModel: PostsViewModel())
     }
 }
 

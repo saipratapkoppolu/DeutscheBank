@@ -19,6 +19,7 @@
 		1F35342E2AAF814200ABD598 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F35342D2AAF814200ABD598 /* EndPoint.swift */; };
 		1F3534302AAF826C00ABD598 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F35342F2AAF826C00ABD598 /* APIService.swift */; };
 		1F3534322AAF87C000ABD598 /* PostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3534312AAF87C000ABD598 /* PostsViewModel.swift */; };
+		1F4B7DFA2AB61CB500AB035E /* PostRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4B7DF92AB61CB500AB035E /* PostRowViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		1F35342D2AAF814200ABD598 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		1F35342F2AAF826C00ABD598 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		1F3534312AAF87C000ABD598 /* PostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewModel.swift; sourceTree = "<group>"; };
+		1F4B7DF92AB61CB500AB035E /* PostRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRowViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				1F3534312AAF87C000ABD598 /* PostsViewModel.swift */,
+				1F4B7DF92AB61CB500AB035E /* PostRowViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				1F35342E2AAF814200ABD598 /* EndPoint.swift in Sources */,
 				1F3534302AAF826C00ABD598 /* APIService.swift in Sources */,
 				1F3533FE2AAF7EAB00ABD598 /* MyPostsApp.swift in Sources */,
+				1F4B7DFA2AB61CB500AB035E /* PostRowViewModel.swift in Sources */,
 				1F3534322AAF87C000ABD598 /* PostsViewModel.swift in Sources */,
 				1F35342A2AAF7F9C00ABD598 /* PostRow.swift in Sources */,
 				1F3534282AAF7F8D00ABD598 /* PostsListView.swift in Sources */,

@@ -8,19 +8,19 @@
 import Foundation
 import Combine
 
+enum APIError: Error {
+    case invalidURL
+}
+
 class APIService {
-    private var cancellables: Set<AnyCancellable> = []
-    
-    func fetchPosts(endpoint: Endpoint) -> AnyPublisher<[Post], Error> {
-//        guard let url = endpoint.url else {
-//
-//            return
-//        }
+    func fetchPosts(endpoint: Endpoint) throws -> AnyPublisher<[Post], Error> {
+        guard let url = endpoint.url else {
+            throw APIError.invalidURL
+        }
         
-        URLSession.shared.dataTaskPublisher(for: endpoint.url!)
+        return URLSession.shared.dataTaskPublisher(for: url)
             .map(\.data)
             .decode(type: [Post].self, decoder: JSONDecoder())
             .eraseToAnyPublisher()
-        
     }
 }

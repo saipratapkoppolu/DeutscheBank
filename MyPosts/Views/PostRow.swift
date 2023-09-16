@@ -8,26 +8,29 @@
 import SwiftUI
 
 struct PostRow: View {
-    @State var post: Post
+    @State var viewModel: PostRowViewModel
+    
+    var handleFavouriteAction: (Post) -> Void
     
     var body: some View {
         HStack {
             VStack(alignment: .leading, spacing: 8) {
-                Text(post.title)
+                Text(viewModel.post.title)
                     .font(.title3)
                     .fontWeight(.bold)
-                Text(post.content)
+                Text(viewModel.post.content)
                     .font(.caption)
             }
+            
             Spacer()
+            
             Button {
-                post.isFavourite.toggle()
+                viewModel.toggleFavourite()
+                handleFavouriteAction(viewModel.post)
             } label: {
-                Image(systemName: post.isFavourite ? "heart.fill" : "heart")
+                Image(systemName: viewModel.favouriteImageName)
             }
             .tint(.red)
-
-            
         }
         .padding(.all, 20)
         
@@ -36,6 +39,6 @@ struct PostRow: View {
 
 struct PostRow_Previews: PreviewProvider {
     static var previews: some View {
-        PostRow(post: Post.previewData)
+        PostRow(viewModel: PostRowViewModel(post: Post.previewData), handleFavouriteAction: { _ in })
     }
 }

@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct MyPostsApp: App {
+    @StateObject private var viewModel = PostsViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            PostsListView()
+            PostsListView(viewModel: viewModel)
         }
     }
 }
