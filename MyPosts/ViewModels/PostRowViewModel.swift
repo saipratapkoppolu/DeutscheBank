@@ -39,12 +39,7 @@ class PostRowViewModel: ObservableObject {
         var favourites: [Post] = fetchFavourites()
         favourites.append(post)
         
-        do {
-            let encodedData = try JSONEncoder().encode(favourites)
-            UserDefaults.standard.set(encodedData, forKey: "favourites")
-        } catch {
-            
-        }
+        UserDefaults.standard.encodeAndSave(object: favourites)
     }
     
     func fetchFavourites() -> [Post] {
@@ -64,11 +59,17 @@ class PostRowViewModel: ObservableObject {
         guard let index = index else { return }
         favourites.remove(at: index)
         
+        UserDefaults.standard.encodeAndSave(object: favourites)
+    }
+}
+
+extension UserDefaults {
+    func encodeAndSave<T: Encodable>(object: T) {
         do {
-            let encodedData = try JSONEncoder().encode(favourites)
+            let encodedData = try JSONEncoder().encode(object)
             UserDefaults.standard.set(encodedData, forKey: "favourites")
         } catch {
-            
+            print("saving error")
         }
     }
 }

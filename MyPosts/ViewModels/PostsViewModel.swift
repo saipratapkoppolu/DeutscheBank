@@ -56,20 +56,24 @@ class PostsViewModel: ObservableObject {
                         }
                     }, receiveValue: { posts in
                         self.posts = posts
-                        let favourites = self.fetchFavourites()
-                        favourites.forEach({ favouritePost in
-                            let index = self.posts.firstIndex { post in
-                                post.id == favouritePost.id
-                            }
-                            guard let index = index else { return }
-                            self.toggleFavorite(post: self.posts[index])
-                        })
+                        self.setFavourites()
                     }
                 )
                 .store(in: &cancellables)
         } catch {
             self.error = error.localizedDescription
         }
+    }
+    
+    func setFavourites() {
+        let favourites = self.fetchFavourites()
+        favourites.forEach({ favouritePost in
+            let index = self.posts.firstIndex { post in
+                post.id == favouritePost.id
+            }
+            guard let index = index else { return }
+            self.toggleFavorite(post: self.posts[index])
+        })
     }
     
     func fetchFavourites() -> [Post] {
